@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.ContractMapper">
+
+    <select id="pageQuery" resultType="com.sky.entity.Contract">
+        SELECT * FROM contract
+        <where>
+            <if test="contractNo != null and contractNo != ''">
+                AND contract_no LIKE CONCAT('%', #{contractNo}, '%')
+            </if>
+            <if test="person != null and person != ''">
+                AND party_b LIKE CONCAT('%', #{person}, '%')
+            </if>
+            <if test="tel != null and tel != ''">
+                AND tel LIKE CONCAT('%', #{tel}, '%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

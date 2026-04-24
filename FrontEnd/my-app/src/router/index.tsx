@@ -43,7 +43,7 @@ export const routes: RouteObject[] = [
   {
     path: "/login",
     element: (
-      <RequireAuth allowed={false} redirectTo="/">
+      <RequireAuth allowed={false} redirectTo="/dashboard">
         <Login />
       </RequireAuth>
     ),

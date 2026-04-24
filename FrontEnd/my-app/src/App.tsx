@@ -8,6 +8,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { getMenu } from "./api/users";
 import { UseDispatch, UseSelector } from "react-redux";
 import { setMenu } from "./store/login/authSlice";
+import { Spin } from "antd";
 function App() {
   const [routerss, setRouter] = useState<any>(null);
   const dispatch = useDispatch();
@@ -66,13 +67,13 @@ function App() {
   if (routerss) {
     return (
       <div className="App">
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Spin></Spin>}>
           <RouterProvider router={routerss} />;
         </Suspense>
       </div>
     );
   } else {
-    return <div>waiting....</div>;
+    return <Spin>Loading...</Spin>;
   }
 }
 

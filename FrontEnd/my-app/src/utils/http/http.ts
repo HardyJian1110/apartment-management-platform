@@ -17,14 +17,25 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 });
 
 // response interceptor
-http.interceptors.response.use((response: AxiosResponse) => {
-  console.log("response: ", response);
-  const res = response.data;
-  if (res.code != 1) {
-    message.error(res.code + ":" + res.message);
-    return Promise.reject(new Error(res.message));
+http.interceptors.response.use(
+  (response: AxiosResponse) => {
+    console.log("response: ", response);
+    const res = response.data;
+    if (res.code != 1) {
+      message.error(res.code + ":" + res.msg);
+      return Promise.reject(new Error(res.msg));
+    }
+    return response.data;
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      sessionStorage.clear();
+
+      message.error("Your session has expired, please login again.");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
   }
-  return response.data;
-});
+);
 
 export default http;

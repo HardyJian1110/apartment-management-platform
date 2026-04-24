@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.UserMapper">
+
+    <select id="pageQuery" resultType="com.sky.entity.User">
+            select * from user_list
+            <where>
+                <if test="companyName != null and companyName != ''">
+                    and name like concat('%', #{companyName}, '%')
+                </if>
+                <if test="contact != null and contact != ''">
+                    and legal_person like concat('%', #{contact}, '%')
+                </if>
+                <if test="phone != null and phone != ''">
+                    and tel like concat('%', #{phone}, '%')
+                </if>
+            </where>
+            order by id desc
+    </select>
+
+    <delete id="batchDeleteUser">
+        delete from user_list where id in
+            <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+    </delete>
+
+    <insert id="addUser">
+        insert into user_list (name, status, tel, business, email, credit_code, industry_num, organization_code, legal_person)
+            values
+            (#{name}, #{status}, #{tel}, #{business}, #{email}, #{creditCode}, #{industryNum}, #{organizationCode}, #{legalPerson})
+    </insert>
+
+    <update id="editUser">
+        update user_list
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="tel != null">tel = #{tel},</if>
+            <if test="business != null">business = #{business},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="creditCode != null">credit_code = #{creditCode},</if>
+            <if test="industryNum != null">industry_num = #{industryNum},</if>
+            <if test="organizationCode != null">organization_code = #{organizationCode},</if>
+            <if test="legalPerson != null">legal_person = #{legalPerson},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

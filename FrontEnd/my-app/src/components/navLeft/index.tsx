@@ -5,7 +5,7 @@ import icons from "./iconList";
 import logo from "../../assets/logo.png";
 import "./index.scss";
 import { useDispatch, UseDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // interface MenuItem {
 //   key: string;
 //   label: string;
@@ -19,6 +19,7 @@ function NavLeft() {
   const [menuData, setMenuData] = useState<MenuItem[]>([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     configMenu();
@@ -51,7 +52,14 @@ function NavLeft() {
         <img src={logo} alt="" width={18} />
         <h1>Smart Apartment</h1>
       </div>
-      <Menu defaultSelectedKeys={["/dashboard"]} mode="inline" theme="dark" items={menuData} onClick={handleClick} />
+      <Menu
+        defaultSelectedKeys={["/dashboard"]}
+        mode="inline"
+        theme="dark"
+        items={menuData}
+        onClick={handleClick}
+        selectedKeys={[location.pathname]}
+      />
     </div>
   );
 }

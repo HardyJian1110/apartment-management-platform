@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.DashboardMapper">
+    <resultMap id="energyVOResultMap" type="com.sky.vo.DashboardEnergyVO">
+        <result column="type_name" property="name" />
+
+        <collection property="data" ofType="java.math.BigDecimal">
+            <result column="energy_value" />
+        </collection>
+    </resultMap>
+
+    <select id="getEnergyData" resultMap="energyVOResultMap">
+        SELECT
+            t.type_name,
+            d.energy_value
+        FROM energy_type t
+                 LEFT JOIN energy_data d ON t.id = d.type_id
+        ORDER BY t.id ASC, d.sort_order ASC
+    </select>
+</mapper>
