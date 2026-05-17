@@ -6,11 +6,11 @@ import { clearToken } from "../../store/login/authSlice";
 import { useDispatch, UseDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: <a target="_blank">Personal Center</a>,
-    icon: <UserOutlined />,
-  },
+  // {
+  //   key: "1",
+  //   label: <a target="_blank">Personal Center</a>,
+  //   icon: <UserOutlined />,
+  // },
   {
     key: "2",
     label: <a target="_blank">Log Out</a>,

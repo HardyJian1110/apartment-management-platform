@@ -1,13 +1,14 @@
-import * as XLSX from "xlsx";
+﻿import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 export function exportToExcel(data: any, header: string[]) {
   const ws = XLSX.utils.json_to_sheet(data, { header });
-  //创建一个工作簿
+  //Create a workbook
   const wb = XLSX.utils.book_new();
-  //把我们的工作表加到工作簿中
+  //Add our worksheet to the workbook
   XLSX.utils.book_append_sheet(wb, ws, "sheet1");
-  //转成二进制数据
+  //Convert to binary data
   const buf = XLSX.write(wb, { bookType: "xlsx", type: "buffer" });
-  //保存和下载
+  //Save and download
   saveAs(new Blob([buf], { type: "application/octet-stream" }), "selected-data.xlsx");
 }
+

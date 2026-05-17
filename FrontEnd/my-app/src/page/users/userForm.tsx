@@ -1,4 +1,4 @@
-import { Modal, Row, Col, Form, Input, Radio, message } from "antd";
+﻿import { Modal, Row, Col, Form, Input, Radio, message } from "antd";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { editUser } from "../../api/userList";
@@ -30,51 +30,51 @@ function UserForm(props: FormProps) {
       });
   };
   useEffect(() => {
-    title == "新增企业" ? form.resetFields() : form.setFieldsValue(userData);
+    title == "Add Enterprise" ? form.resetFields() : form.setFieldsValue(userData);
   }, [visible]);
   return (
     <>
       <Modal title={title} open={visible} onCancel={hideModal} width={800} onOk={handleOk}>
-        <Form form={form} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
+        <Form form={form} labelWrap labelCol={{ flex: "170px" }} wrapperCol={{ flex: "auto" }}>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item label="客户名称" name="name" rules={[{ required: true, message: "客户名称不能为空" }]}>
+              <Form.Item label="Customer Name" name="name" rules={[{ required: true, message: "Customer Name is required" }]}>
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="联系电话" name="tel" rules={[{ required: true, message: "联系电话不能为空" }]}>
+              <Form.Item label="Contact Phone" name="tel" rules={[{ required: true, message: "Contact Phone is required" }]}>
                 <Input />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item label="经营状态" name="status" rules={[{ required: true, message: "经营状态不能为空" }]}>
+              <Form.Item label="Business Status" name="status" rules={[{ required: true, message: "Business Status is required" }]}>
                 <Radio.Group>
-                  <Radio value="1">营业中</Radio>
-                  <Radio value="2">暂停营业</Radio>
-                  <Radio value="3">已关闭</Radio>
+                  <Radio value="1">Operating</Radio>
+                  <Radio value="2">Suspended</Radio>
+                  <Radio value="3">Closed</Radio>
                 </Radio.Group>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="所属行业" name="business" rules={[{ required: true, message: "所属行业不能为空" }]}>
+              <Form.Item label="Industry" name="business" rules={[{ required: true, message: "Industry is required" }]}>
                 <Input />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item label="邮箱" name="email" rules={[{ required: true, message: "邮箱不能为空" }]}>
+              <Form.Item label="Email" name="email" rules={[{ required: true, message: "Email is required" }]}>
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                label="统一信用代码"
+                label="Unified Credit Code"
                 name="creditCode"
-                rules={[{ required: true, message: "统一信用代码不能为空" }]}
+                rules={[{ required: true, message: "Unified Credit Code is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -83,18 +83,18 @@ function UserForm(props: FormProps) {
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                label="工商注册号"
+                label="Business Registration Number"
                 name="industryNum"
-                rules={[{ required: true, message: "工商注册号不能为空" }]}
+                rules={[{ required: true, message: "Business Registration Number is required" }]}
               >
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                label="组织机构代码"
+                label="Organization Code"
                 name="organizationCode"
-                rules={[{ required: true, message: "组织机构代码不能为空" }]}
+                rules={[{ required: true, message: "Organization Code is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -102,7 +102,11 @@ function UserForm(props: FormProps) {
           </Row>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item label="法人名" name="legalPerson" rules={[{ required: true, message: "法人名不能为空" }]}>
+              <Form.Item
+                label="Legal Representative"
+                name="legalPerson"
+                rules={[{ required: true, message: "Legal Representative is required" }]}
+              >
                 <Input />
               </Form.Item>
             </Col>
@@ -113,3 +117,4 @@ function UserForm(props: FormProps) {
   );
 }
 export default UserForm;
+

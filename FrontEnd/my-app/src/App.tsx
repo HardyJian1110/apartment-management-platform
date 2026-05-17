@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+﻿import React, { useEffect, useState, Suspense } from "react";
 import logo from "./logo.svg";
 import { routes } from "./router";
 import { RouterProvider } from "react-router-dom";
@@ -18,7 +18,7 @@ function App() {
   //     const { data } = await getMenu();
   //     if (data.length) {
   //       dispatch(setMenu(data));
-  //       const routers = generatesRoutes(data); //动态创建的路由表
+  //       const routers = generatesRoutes(data); //Dynamically generated routing table
   //       const myRoutes = [...routes];
   //       myRoutes[0].children = routers;
   //       myRoutes[0].children[0].index = true;
@@ -34,14 +34,14 @@ function App() {
   // }, [token]);
   useEffect(() => {
     async function loadData() {
-      // 1. 💡 如果没登录，直接加载基础路由（包含登录页），不请求接口。
+      // 1. 💡 If not logged in, load the basic routes directly (including the login page) without calling the API.
       if (!token) {
         const router = createBrowserRouter(routes);
         setRouter(router);
         return;
       }
 
-      // 2. 只有有 token 才会执行到这里
+      // 2. Only runs here when a token exists
       try {
         const { data } = await getMenu();
         if (data && data.length) {
@@ -57,7 +57,7 @@ function App() {
           setRouter(createBrowserRouter(routes));
         }
       } catch (error) {
-        // 如果请求菜单失败（比如 token 过期），也保底显示基础路由
+        // If the menu request fails (for example, token expired), still fall back to the basic routes
         setRouter(createBrowserRouter(routes));
       }
     }
@@ -78,3 +78,4 @@ function App() {
 }
 
 export default App;
+

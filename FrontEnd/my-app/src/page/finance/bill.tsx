@@ -1,4 +1,4 @@
-import {
+﻿import {
   Card,
   Row,
   Col,
@@ -56,90 +56,90 @@ function Bill() {
       fixed: "left",
     },
     {
-      title: "账单号",
+      title: "Bill No.",
       dataIndex: "accountNo",
       key: "accountNo",
       width: 150,
     },
     {
-      title: "缴费状态",
+      title: "Payment Status",
       dataIndex: "status",
       key: "status",
-      width: 100,
+      width: 130,
       render(value) {
-        return value == 1 ? <Tag color="green">已缴费</Tag> : <Tag color="red">未缴费</Tag>;
+        return value == 1 ? <Tag color="green">Paid</Tag> : <Tag color="red">Unpaid</Tag>;
       },
     },
     {
-      title: "房屋号",
+      title: "Room No.",
       dataIndex: "roomNo",
       key: "roomNo",
       width: 100,
     },
     {
-      title: "车位号",
+      title: "Parking Spot No.",
       dataIndex: "carNo",
       key: "carNo",
-      width: 100,
+      width: 150,
     },
     {
-      title: "手机号",
+      title: "Phone Number",
       dataIndex: "tel",
       key: "tel",
       width: 150,
     },
     {
-      title: "物业费(年)",
+      title: "Property Fee (Yearly)",
       dataIndex: "costName1",
       key: "costName1",
-      width: 150,
+      width: 180,
     },
 
     {
-      title: "车位费",
+      title: "Parking Fee",
       dataIndex: "costName2",
       key: "costName2",
       width: 150,
     },
     {
-      title: "房屋租金",
+      title: "Rent",
       dataIndex: "costName3",
       key: "costName3",
       width: 150,
     },
 
     {
-      title: "开始时间",
+      title: "Start Date",
       dataIndex: "startDate",
       key: "startDate",
       width: 150,
     },
     {
-      title: "结束时间",
+      title: "End Date",
       dataIndex: "endDate",
       key: "endDate",
       width: 150,
     },
     {
-      title: "优惠金额",
+      title: "Discount Amount",
       dataIndex: "preferential",
       key: "preferential",
-      width: 150,
+      width: 160,
     },
     {
-      title: "合计应收金额",
+      title: "Total Receivable",
       dataIndex: "money",
       key: "money",
-      width: 150,
+      width: 170,
     },
     {
-      title: "支付方式",
+      title: "Payment Method",
       dataIndex: "pay",
       key: "pay",
-      width: 100,
+      width: 130,
     },
     {
-      title: "操作",
+      title: "Actions",
       width: 230,
       key: "operate",
       fixed: "right",
@@ -147,17 +147,17 @@ function Bill() {
         return (
           <>
             {/* <Button type="primary" size="small">
-              打印
+              Print
             </Button> */}
             <Popconfirm
-              title="删除确认"
-              description="确定要删除吗？"
-              okText="是"
-              cancelText="否"
+              title="Delete Confirmation"
+              description="Are you sure you want to delete?"
+              okText="Yes"
+              cancelText="No"
               onConfirm={() => confirm(record.id)}
             >
               <Button type="primary" size="small" danger className="ml mr">
-                账单作废
+                Delete
               </Button>
             </Popconfirm>
           </>
@@ -287,38 +287,42 @@ function Bill() {
       <Card>
         <Row gutter={16}>
           <Col span={6}>
-            <Statistic title="应收账单金额" value="16,876.38" />
+            <Statistic title="Receivable Bill Amount" value="16,876.38" />
           </Col>
           <Col span={6}>
-            <Statistic title="已缴账单金额" value="6,952.00" />
+            <Statistic title="Paid Bill Amount" value="6,952.00" />
           </Col>
           <Col span={6}>
-            <Statistic title="已退账单金额" value="2,355.23" />
+            <Statistic title="Refunded Bill Amount" value="2,355.23" />
           </Col>
           <Col span={6}>
-            <Statistic title="未缴账单金额" value="9,962.00" />
+            <Statistic title="Unpaid Bill Amount" value="9,962.00" />
           </Col>
         </Row>
       </Card>
       <Card className="mt search">
         <Row gutter={16}>
           <Col span={6}>
-            <p>账单日期</p>
+            <p>Bill Date</p>
             <RangePicker name="date" style={{ width: "100%" }} onChange={handleChange} />
           </Col>
           <Col span={6}>
-            <p>房/车号：</p>
-            <Input placeholder="请输入门牌号或者车位号" value={formData.no} onChange={handleChange1} />
+            <p>Room/Parking No.:</p>
+            <Input
+              placeholder="Please enter the room number or parking spot number"
+              value={formData.no}
+              onChange={handleChange1}
+            />
           </Col>
           <Col span={6}>
-            <p>缴费情况</p>
+            <p>Payment Status</p>
             <Select
               style={{ width: "100%" }}
               value={formData.status}
               options={[
-                { value: "", label: "全部" },
-                { value: "1", label: "已缴纳" },
-                { value: "2", label: "未缴纳" },
+                { value: "", label: "All" },
+                { value: "1", label: "Paid" },
+                { value: "2", label: "Unpaid" },
               ]}
               onChange={handleChange2}
             ></Select>
@@ -331,9 +335,9 @@ function Bill() {
                 loadData();
               }}
             >
-              查询
+              Search
             </Button>
-            <Button onClick={reset}>重置</Button>
+            <Button onClick={reset}>Reset</Button>
           </Col>
         </Row>
       </Card>
@@ -344,7 +348,7 @@ function Bill() {
           disabled={disabled}
           onClick={() => exportToExcel(selectedRows, header)}
         >
-          导出为Excel
+          Export to Excel
         </Button>
         <Button
           icon={<DeleteOutlined />}
@@ -354,7 +358,7 @@ function Bill() {
           disabled={disabled}
           onClick={batchDelete}
         >
-          批量作废
+          Batch Void
         </Button>
       </Card>
       <Card className="mt">
@@ -364,7 +368,7 @@ function Bill() {
           pagination={false}
           rowKey={(record) => record.accountNo}
           rowSelection={rowSelection}
-          scroll={{ x: 1200 }}
+          scroll={{ x: 1500 }}
         />
         <Pagination
           className="fr mt"
@@ -380,3 +384,4 @@ function Bill() {
 }
 
 export default Bill;
+

@@ -1,4 +1,4 @@
-import { Card, Row, Col, Table, Input, Button, Tag, Progress, Badge, Pagination, Popconfirm, message } from "antd";
+﻿import { Card, Row, Col, Table, Input, Button, Tag, Progress, Badge, Pagination, Popconfirm, message } from "antd";
 import type { PaginationProps, TableProps } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { getBuildingList, batchDeleteBuilding } from "../../api/buildingList";
@@ -91,7 +91,7 @@ function Temement() {
 
   // const edit = (record: DataType) => {
   //   setIsModalOpen(true);
-  //   setTitle("编辑企业");
+  //   setTitle("Edit Enterprise");
   //   dispatch(setBuildingData(record));
   // };
 
@@ -105,36 +105,36 @@ function Temement() {
       render: (value, record, index) => index + 1,
     },
     {
-      title: "楼宇名称",
+      title: "Building Name",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "负责人",
+      title: "Person in Charge",
       dataIndex: "person",
       key: "person",
     },
     {
-      title: "负责人电话",
+      title: "Manager Phone",
       dataIndex: "tel",
       key: "tel",
     },
     {
-      title: "使用状态",
+      title: "Usage Status",
       dataIndex: "status",
       key: "status",
       render: (value) => {
         if (value == 1) {
-          return <Tag color="#f50">建设中</Tag>;
+          return <Tag color="#f50">Under Construction</Tag>;
         } else if (value == 2) {
-          return <Tag color="#2db7f5">已竣工</Tag>;
+          return <Tag color="#2db7f5">Completed</Tag>;
         } else {
-          return <Tag color="#87d068">使用中</Tag>;
+          return <Tag color="#87d068">In Use</Tag>;
         }
       },
     },
     {
-      title: "空置率",
+      title: "Vacancy Rate",
       dataIndex: "vacancyRate",
       key: "vacancyRate",
       render(value) {
@@ -142,7 +142,7 @@ function Temement() {
       },
     },
     {
-      title: "物业费率",
+      title: "Property Fee Rate",
       dataIndex: "propertyFee",
       key: "propertyFee",
       render(value) {
@@ -150,23 +150,23 @@ function Temement() {
       },
     },
     {
-      title: "操作",
+      title: "Actions",
       key: "operate",
       render(value, record) {
         return (
           <>
             {/* <Button type="primary" className="mr" size="small" onClick={() => edit(record)}>
-              编辑
+              Edit
             </Button> */}
             <Popconfirm
-              title="删除确认"
-              description="确定要删除吗？"
-              okText="是"
-              cancelText="否"
+              title="Delete Confirmation"
+              description="Are you sure you want to delete?"
+              okText="Yes"
+              cancelText="No"
               onConfirm={() => confirm(record.id)}
             >
               <Button type="primary" danger className="ml" size="small">
-                删除
+                Delete
               </Button>
             </Popconfirm>
           </>
@@ -180,19 +180,19 @@ function Temement() {
       <Card className="search">
         <Row gutter={16}>
           <Col span={4}>
-            <p>楼宇名称：</p>
+            <p>Building Name：</p>
             <Input name="name" value={formData.name} onChange={handleChange}></Input>
           </Col>
           <Col span={4}>
-            <p>负责人：</p>
+            <p>Person in Charge：</p>
             <Input name="person" value={formData.person} onChange={handleChange}></Input>
           </Col>
           <Col span={4}>
             <Button className="mr" type="primary" onClick={() => loadData()}>
-              查询
+              Search
             </Button>
             <Button className="ml" onClick={reset}>
-              重置
+              Reset
             </Button>
           </Col>
         </Row>
@@ -214,7 +214,7 @@ function Temement() {
                 pageSize={pageSize}
                 showSizeChanger
                 showQuickJumper
-                showTotal={(total) => `共 ${total} 条`}
+                showTotal={(total) => `Total ${total} items`}
                 onChange={onChange}
               />
             </div>
@@ -226,3 +226,4 @@ function Temement() {
 }
 
 export default Temement;
+

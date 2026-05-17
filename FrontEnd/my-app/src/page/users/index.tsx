@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Card, Row, Col, Input, Button, Table, Pagination, Tag, Popconfirm, message } from "antd";
 import type { TableProps } from "antd";
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -95,13 +95,13 @@ function Users() {
   };
   const edit = (record: DataType) => {
     setIsModalOpen(true);
-    setTitle("编辑企业");
+    setTitle("Edit Enterprise");
     dispatch(setUserData(record));
   };
 
   const add = () => {
     setIsModalOpen(true);
-    setTitle("新增企业");
+    setTitle("Add Enterprise");
     dispatch(setUserData({}));
   };
 
@@ -118,77 +118,77 @@ function Users() {
       },
     },
     {
-      title: "客户名称",
+      title: "Customer Name",
       key: "name",
       dataIndex: "name",
     },
     {
-      title: "经营状态",
+      title: "Business Status",
       key: "status",
       dataIndex: "status",
       render(value) {
         if (value == 1) {
-          return <Tag color="green">营业中</Tag>;
+          return <Tag color="green">Operating</Tag>;
         } else if (value == 2) {
-          return <Tag color="#f50">暂停营业</Tag>;
+          return <Tag color="#f50">Suspended</Tag>;
         } else if (value == 3) {
-          return <Tag color="red">已关闭</Tag>;
+          return <Tag color="red">Closed</Tag>;
         }
       },
     },
     {
-      title: "联系电话",
+      title: "Contact Phone",
       key: "tel",
       dataIndex: "tel",
     },
     {
-      title: "所属行业",
+      title: "Industry",
       key: "business",
       dataIndex: "business",
     },
     {
-      title: "邮箱",
+      title: "Email",
       key: "email",
       dataIndex: "email",
     },
     {
-      title: "统一信用代码",
+      title: "Unified Credit Code",
       key: "creditCode",
       dataIndex: "creditCode",
     },
     {
-      title: "工商注册号",
+      title: "Business Registration Number",
       key: "industryNum",
       dataIndex: "industryNum",
     },
     {
-      title: "组织结构代码",
+      title: "Organization Code",
       key: "organizationCode",
       dataIndex: "organizationCode",
     },
     {
-      title: "法人名",
+      title: "Legal Representative",
       key: "legalPerson",
       dataIndex: "legalPerson",
     },
     {
-      title: "操作",
+      title: "Actions",
       key: "operate",
       render(value, record, index) {
         return (
           <div className="button">
             <Button type="primary" size="small" onClick={() => edit(record)}>
-              编辑
+              Edit
             </Button>
             <Popconfirm
-              title="删除确认"
-              description="确定要删除吗？"
-              okText="是"
-              cancelText="否"
+              title="Delete Confirmation"
+              description="Are you sure you want to delete?"
+              okText="Yes"
+              cancelText="No"
               onConfirm={() => confirm(record.id)}
             >
               <Button type="primary" danger className="ml" size="small">
-                删除
+                Delete
               </Button>
             </Popconfirm>
           </div>
@@ -202,33 +202,33 @@ function Users() {
       <Card className="search">
         <Row gutter={16}>
           <Col span={7}>
-            <p>企业名称：</p>
+            <p>Enterprise Name:</p>
             <Input name="companyName" value={formData.companyName} onChange={handleChange} />
           </Col>
           <Col span={7}>
-            <p>联系人：</p>
+            <p>Contact:</p>
             <Input name="contact" value={formData.contact} onChange={handleChange} />
           </Col>
           <Col span={7}>
-            <p>联系电话:</p>
+            <p>Contact Phone:</p>
             <Input name="phone" value={formData.phone} onChange={handleChange} />
           </Col>
           <Col span={3}>
             <Button type="primary" onClick={() => loadData()}>
-              查询
+              Search
             </Button>
             <Button className="ml" onClick={reset}>
-              重置
+              Reset
             </Button>
           </Col>
         </Row>
       </Card>
       <Card className="mt tr">
         <Button type="primary" onClick={add}>
-          新增企业
+          Add Enterprise
         </Button>
         <Button danger type="primary" className="ml" disabled={disabled} onClick={batchDelete}>
-          批量删除
+          Batch Delete
         </Button>
       </Card>
       <Card className="mt">
@@ -248,7 +248,7 @@ function Users() {
                 pageSize={pageSize}
                 showSizeChanger
                 showQuickJumper
-                showTotal={(total) => `共 ${total} 条`}
+                showTotal={(total) => `Total ${total} items`}
                 onChange={onChange}
               />
             </div>
@@ -261,3 +261,4 @@ function Users() {
 
 const MyUserForm = React.memo(UserForm);
 export default Users;
+
